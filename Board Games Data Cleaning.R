@@ -1,4 +1,4 @@
-# STAT 172 FINAL PROJECT
+# STAT 172 FINAL PROJECT DATA CLEANING
 
 rm(list = ls())
 library(ggplot2)

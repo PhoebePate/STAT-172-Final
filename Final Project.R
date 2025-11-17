@@ -12,6 +12,9 @@ games <- read.csv("class_data/boardgames.csv", stringsAsFactors = TRUE)
 
 games <- games %>% select(-c(1, 4, 10:12, 15, 17:22, 25, 30, 32, 34, 37:50, 52))
 
+# turn description into word count
+games$desc_word_count <- lengths(strsplit(games$description, "\\s+"))
+
 # replace minplayers == 0 with median
 # replace maxplayers == 0 with median
 # replace minplaytime == 0 with median

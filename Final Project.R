@@ -10,7 +10,7 @@ library(forcats)
 
 games <- read.csv("class_data/boardgames.csv", stringsAsFactors = TRUE)
 
-games <- games %>% select(-c(1, 4, 10:12, 15, 17:22, 25, 30, 32, 34, 37:50, 52))
+games <- games %>% select(-c(1, 4, 10:12, 15, 17, 18, 20:22, 25, 30, 32, 34, 37:50, 52))
 
 # turn description into word count
 games$desc_word_count <- lengths(strsplit(games$description, "\\s+"))

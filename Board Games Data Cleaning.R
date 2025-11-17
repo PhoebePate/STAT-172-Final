@@ -42,3 +42,7 @@ games$desc_word_count <- lengths(strsplit(games$description, "\\s+"))
 
 # replace years <= 0 with median
 
+
+# create new column:
+# difference between minplayers and maxplayers
+

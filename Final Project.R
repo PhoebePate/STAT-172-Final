@@ -1,12 +1,19 @@
 # STAT 172 FINAL PROJECT
 
 rm(list = ls())
-library(tidyverse)
-library(reshape2)
 library(ggplot2)
+library(tidyverse)
+library(rpart)
+library(rpart.plot)
+library(tidyverse)
 library(pROC)
+library(tidymodels)
+library(randomForest)
+library(RColorBrewer)
 library(glmnet)
-library(forcats)
+library(lubridate)
+library(reshape2)
+
 
 games <- read.csv("class_data/boardgames.csv", stringsAsFactors = TRUE)
 # our client is the Rook Room, a new small business in Des Moines who needs help in categorizing their board game collection. 

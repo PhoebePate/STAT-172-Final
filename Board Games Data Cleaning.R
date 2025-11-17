@@ -24,7 +24,7 @@ games <- read.csv("class_data/boardgames.csv", stringsAsFactors = TRUE)
 # CLEANING STEPS
 
 # remove unwanted columns
-games <- games %>% select(-c(1, 4, 10:12, 15, 17:18, 20:22, 25, 30, 32, 34, 37:45, 47:50, 52))
+games <- games %>% select(-c(1, 4, 10:13, 15, 17:18, 20:22, 25, 30, 32, 34, 37:45, 47:50, 52))
 
 # -- description column --
 # turn description into word count
@@ -65,12 +65,8 @@ games$dif_players <- (games$maxplayers - games$minplayers)
 # find count of how many times each unique category appears
 cleaned_lists <- str_replace_all(games$boardgamecategory, "\\[|\\]|'", "")
 split_lists <- str_split(cleaned_lists, ",\\s*")
-
 unique_items <- unique(unlist(split_lists))
-unique_items
-
 category_counts <- table(unlist(split_lists))
-view(category_counts)
 
 # assign one of the top categories to each row (otherwise "other" category):
 top_cats <- c(
@@ -95,3 +91,15 @@ assigned_category <- sapply(split_lists, function(x) { # go through each row’s
 # create new column for main_category
 games$main_category <- assigned_category
 games <- games %>% select(-boardgamecategory) # remove original column
+
+# -- average (user rating) column --
+# not enough people own the game, so rating shows up as 0
+# not many that are 0, so we are just going to remove these few rows
+games <- games %>% filter(average != 0)
+
+# -- avgweight (complexity) column --
+sum(games$avgweight == 0)
+# 892 "missing" values (0) in avgweight column
+
+# we are going to remove these rows, since we still have many other board games (rows)
+games <- games %>%filter(avgweight != 0)

@@ -93,7 +93,6 @@ assigned_category <- sapply(split_lists, function(x) { # go through each row’s
 games$main_category <- assigned_category
 games <- games %>% select(-boardgamecategory) # remove original column
 
-<<<<<<< HEAD
 # -- average (user rating) column --
 # not enough people own the game, so rating shows up as 0
 # not many that are 0, so we are just going to remove these few rows
@@ -105,8 +104,6 @@ sum(games$avgweight == 0)
 
 # we are going to remove these rows, since we still have many other board games (rows)
 games <- games %>%filter(avgweight != 0)
-=======
->>>>>>> cd5b78aea2bc6cbd8727c380ecc66b9469850837
 
 # checks 
 # final checks for factor categorical, logical values, and no NAs

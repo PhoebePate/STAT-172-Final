@@ -25,43 +25,63 @@ games %>%
   facet_wrap(~ key, scales = "free") +
   labs(title = "Numeric Variable Distributions")
 
-ggplot(games, aes(difficulty, avgweight)) + 
+ggplot(games, aes(difficulty, difficulty)) + 
   geom_boxplot()
 
 # histograms
-games <- read.csv("class_data/boardgames.csv", stringsAsFactors = TRUE)
-
-ggplot(data = games) + geom_bar(aes(x = yearpublished, fill = avgweight), position = "fill")
-ggplot(data = games) + geom_bar(aes(x = numplays_month, fill = avgweight), position = "fill")
-ggplot(data = games) + geom_bar(aes(x = numwanting, fill = avgweight), position = "fill")
+ggplot(data = games) + geom_bar(aes(x = yearpublished, fill = difficulty), position = "fill")
+ggplot(data = games) + geom_bar(aes(x = numplays_month, fill = difficulty), position = "fill")
+ggplot(data = games) + geom_bar(aes(x = numwanting, fill = difficulty), position = "fill")
 
 # better as scatterplots
 # chat helped make look pretty
-# see relationship between avgweight and numwanting
-ggplot(games, aes(x = numwanting, y = avgweight, color = avgweight)) +
+# see relationship between difficulty and numwanting
+ggplot(games, aes(x = numwanting, y = difficulty, color = difficulty)) +
   geom_point(alpha = 0.6) +
   theme_minimal()
 
-# see relationship between avgweight and numplays
-ggplot(games, aes(x = numplays, y = avgweight, color = avgweight)) +
+# see relationship between difficulty and numplays
+ggplot(games, aes(x = numplays, y = difficulty, color = difficulty)) +
   geom_point(alpha = 0.6) +
   theme_minimal()
 
-ggplot(games, aes(x = numplays_month, y = avgweight, color = avgweight)) +
+ggplot(games, aes(x = numplays_month, y = difficulty, color = difficulty)) +
   geom_point(alpha = 0.6) +
   theme_minimal()
 
 # year published
-ggplot(games, aes(x = yearpublished, y = avgweight, color = avgweight)) +
+ggplot(games, aes(x = yearpublished, y = difficulty, color = difficulty)) +
   geom_point(alpha = 0.6) +
   theme_minimal()
 
 # dif players
-ggplot(games, aes(x = dif_players, y = avgweight, color = avgweight)) +
+ggplot(games, aes(x = dif_players, y = difficulty, color = difficulty)) +
   geom_point(alpha = 0.6) +
   theme_minimal()
 
-# -- Multivariate plots of x var and y var ---
-ggplot(data = games) + geom_histogram(aes(x= minplaytime, fill = avgweight), position = "fill")
+<<<<<<< Updated upstream
+=======
+# Category (Factor) --> bar chart
+ggplot(data = games) + geom_bar(aes(x = main_category))
+table(games$main_category)
 
+>>>>>>> Stashed changes
+# -- Multivariate plots of x var and y var ---
+ggplot(data = games) + geom_histogram(aes(x= minplaytime, fill = difficulty), position = "fill")
+
+<<<<<<< Updated upstream
+=======
+
+# difficulty over number of plays
+ggplot(data = games) + geom_histogram(aes(x = numplays, fill = difficulty), position = "fill", binwidth = 1) +
+  ggtitle("Avg rating over time") + 
+  labs(x = "Year", y = "Proportion") + scale_fill_grey("Board Game's\nOutcome") + theme_bw() +
+  theme(plot.title = element_text(hjust = .5))
+
+# more multivariate plots
+# what if we instead have 2 numeric x variables?? 
+ggplot(data = games) + 
+  geom_point(aes(x = numplays, y = news, colour = difficulty)) +scale_colour_grey() + theme_bw()
+
+>>>>>>> Stashed changes
 # end of exploratory analysis. 

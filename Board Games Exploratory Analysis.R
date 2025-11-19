@@ -59,18 +59,12 @@ ggplot(games, aes(x = dif_players, y = difficulty, color = difficulty)) +
   geom_point(alpha = 0.6) +
   theme_minimal()
 
-<<<<<<< Updated upstream
-=======
 # Category (Factor) --> bar chart
 ggplot(data = games) + geom_bar(aes(x = main_category))
 table(games$main_category)
 
->>>>>>> Stashed changes
 # -- Multivariate plots of x var and y var ---
 ggplot(data = games) + geom_histogram(aes(x= minplaytime, fill = difficulty), position = "fill")
-
-<<<<<<< Updated upstream
-=======
 
 # difficulty over number of plays
 ggplot(data = games) + geom_histogram(aes(x = numplays, fill = difficulty), position = "fill", binwidth = 1) +
@@ -83,5 +77,4 @@ ggplot(data = games) + geom_histogram(aes(x = numplays, fill = difficulty), posi
 ggplot(data = games) + 
   geom_point(aes(x = numplays, y = news, colour = difficulty)) +scale_colour_grey() + theme_bw()
 
->>>>>>> Stashed changes
 # end of exploratory analysis. 

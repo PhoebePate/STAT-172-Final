@@ -74,15 +74,4 @@ ggplot(data = games) + geom_histogram(aes(x = numplays, fill = avgweight), posit
   ggtitle("Avg rating over time") + 
   labs(x = "Year", y = "Proportion") + scale_fill_grey("Board Game's\nOutcome") + theme_bw() +
   theme(plot.title = element_text(hjust = .5)) 
-
-
-
-
-
-
-# more multivariate plots
-# what if we instead have 2 numeric x variables?? 
-ggplot(data = games) + 
-  geom_point(aes(x = numplays, y = news, colour = avgweight)) +scale_colour_grey() + theme_bw()
-
 # end of exploratory analysis. 

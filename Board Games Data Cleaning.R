@@ -107,3 +107,18 @@ sum(games$avgweight == 0)
 games <- games %>%filter(avgweight != 0)
 =======
 >>>>>>> cd5b78aea2bc6cbd8727c380ecc66b9469850837
+
+# checks 
+# final checks for factor categorical, logical values, and no NAs
+colSums(is.na(games))
+str(games)
+games <- games %>% filter(maxplayers >= minplayers)
+games <- games %>% filter(maxplaytime >= minplaytime)
+games <- games %>% filter(yearpublished >= 1900 & yearpublished <= year(Sys.Date()))
+
+# remove duplicates
+games <- games %>% distinct()
+
+# defining target variable
+games$difficulty <- ifelse(games$avgweight > 2.5, "Complex", "Simple")
+games$difficulty <- as.factor(games$difficulty)

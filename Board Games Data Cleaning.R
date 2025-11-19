@@ -118,3 +118,4 @@ games <- games %>% distinct()
 # defining target variable
 games$difficulty <- ifelse(games$avgweight > 2.5, "Complex", "Simple")
 games$difficulty <- as.factor(games$difficulty)
+

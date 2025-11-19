@@ -67,6 +67,7 @@ cleaned_lists <- str_replace_all(games$boardgamecategory, "\\[|\\]|'", "")
 split_lists <- str_split(cleaned_lists, ",\\s*")
 unique_items <- unique(unlist(split_lists))
 category_counts <- table(unlist(split_lists))
+sort(category_counts,decreasing=TRUE)[1:20]
 
 # assign one of the top categories to each row (otherwise "other" category):
 top_cats <- c(

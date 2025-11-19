@@ -68,10 +68,4 @@ table(games$category)
 # -- Multivariate plots of x var and y var ---
 ggplot(data = games) + geom_histogram(aes(x= minplaytime, fill = avgweight), position = "fill")
 
-
-# avgweight over number of plays
-ggplot(data = games) + geom_histogram(aes(x = numplays, fill = avgweight), position = "fill", binwidth = 1) +
-  ggtitle("Avg rating over time") + 
-  labs(x = "Year", y = "Proportion") + scale_fill_grey("Board Game's\nOutcome") + theme_bw() +
-  theme(plot.title = element_text(hjust = .5)) 
 # end of exploratory analysis. 

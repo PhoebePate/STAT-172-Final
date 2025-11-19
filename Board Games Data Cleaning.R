@@ -87,7 +87,6 @@ assigned_category <- sapply(split_lists, function(x) { # go through each row’s
   match_cat <- intersect(x, top_cats) # find which of the row’s categories are in your list of top categories.
   ifelse(length(match_cat) > 0, match_cat[1], "Other") # if it found any top categories, use the first one; if not, label it "Other".
 })
-})
 
 # create new column for main_category
 games$main_category <- assigned_category

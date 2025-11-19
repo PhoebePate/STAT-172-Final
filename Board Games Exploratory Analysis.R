@@ -61,28 +61,7 @@ ggplot(games, aes(x = dif_players, y = avgweight, color = avgweight)) +
   geom_point(alpha = 0.6) +
   theme_minimal()
 
-# Category (Factor) --> bar chart
-ggplot(data = games) + geom_bar(aes(x = category))
-table(games$category)
-
 # -- Multivariate plots of x var and y var ---
 ggplot(data = games) + geom_histogram(aes(x= minplaytime, fill = avgweight), position = "fill")
-
-
-# avgweight over number of plays
-ggplot(data = games) + geom_histogram(aes(x = numplays, fill = avgweight), position = "fill", binwidth = 1) +
-  ggtitle("Avg rating over time") + 
-  labs(x = "Year", y = "Proportion") + scale_fill_grey("Board Game's\nOutcome") + theme_bw() +
-  theme(plot.title = element_text(hjust = .5)) 
-
-
-
-
-
-
-# more multivariate plots
-# what if we instead have 2 numeric x variables?? 
-ggplot(data = games) + 
-  geom_point(aes(x = numplays, y = news, colour = avgweight)) +scale_colour_grey() + theme_bw()
 
 # end of exploratory analysis. 

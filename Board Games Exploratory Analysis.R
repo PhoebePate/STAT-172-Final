@@ -1,6 +1,4 @@
 # exploratory analysis!
-# histograms
-
 library(ggplot2)
 library(tidyverse)
 library(rpart)
@@ -14,7 +12,23 @@ library(lubridate)
 library(reshape2)
 library(stringr)
 
+# look at target 
+ggplot(games, aes(difficulty)) +
+  geom_bar() +
+  labs(title = "Count of Complex vs Simple Games")
 
+games %>% 
+  select(minplayers, maxplayers, minplaytime, maxplaytime, yearpublished, desc_word_count) %>% 
+  gather() %>% 
+  ggplot(aes(value)) + 
+  geom_histogram(bins = 30) +
+  facet_wrap(~ key, scales = "free") +
+  labs(title = "Numeric Variable Distributions")
+
+ggplot(games, aes(difficulty, avgweight)) + 
+  geom_boxplot()
+
+# histograms
 games <- read.csv("class_data/boardgames.csv", stringsAsFactors = TRUE)
 
 ggplot(data = games) + geom_bar(aes(x = yearpublished, fill = avgweight), position = "fill")

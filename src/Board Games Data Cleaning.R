@@ -17,7 +17,7 @@ library(reshape2)
 library(stringr)
 
 # import data
-games <- read.csv("class_data/boardgames.csv", stringsAsFactors = TRUE)
+games <- read.csv("src/boardgames.csv", stringsAsFactors = TRUE)
 # our client is the Rook Room, a new small business in Des Moines who needs help in categorizing their board game collection. 
 # Their collection of games requires a difficulty indicator (whether it is a complex game or not) based on a number of factors. 
 

@@ -1,8 +1,13 @@
 # Board Games Decision Tree
 
-source("STAT-172-Final/Board Games Data Cleaning.R") # sourcing the dataframe from 
+library(rpart) # classification trees
+library(rpart.plot) # makes pretty trees
+library(tidyverse) 
+library(pROC)
 
-games_clean <- read.csv("class_data/cleanboardgames.csv")
+games_clean <- source("src/Board Games Data Cleaning.R") # sourcing the dataframe from 
+
+games_clean <- read.csv("src/cleanboardgames.csv")
 games_clean <- games_clean %>% select(-c(1,2,10,23))
 
 
@@ -45,19 +50,16 @@ games_tree <- rpart(difficulty ~ ., # assumes you want ALL OTHER COLUMNS AS PRED
                method = 'class',
                control = rpart.control(cp = 0.0001, minsplit = 1))
 rpart.plot(games_tree)
-# but let's prune it down:
+# prune it
 printcp(games_tree)
 
 
-#automatically/reproducibly grab the optimal cp number
-# that is - grab the cp that corresponds to the smallest xerror
-
 optimalcp <- games_tree$cptable[which.min(games_tree$cptable[,"xerror"]),"CP"]
-ctree2 <- prune(ctree,cp = optimalcp)
+games_tree2 <- prune(games_tree,cp = optimalcp)
 
-#cptree2 is our final (tuned) tree
+#games_tree2 is the (tuned) tree
 
-rpart.plot(ctree2)
+rpart.plot(games_tree2)
 
 ### --- MODEL VALIDATION  + PREDICTION----
 # make the column of predictions based on pruned tree

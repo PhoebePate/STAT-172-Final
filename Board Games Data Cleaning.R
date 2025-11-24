@@ -92,22 +92,11 @@ cleaned_lists <- str_replace_all(games$boardgamecategory, "\\[|\\]|'", "")
 split_lists <- str_split(cleaned_lists, ",\\s*")
 unique_items <- unique(unlist(split_lists))
 category_counts <- table(unlist(split_lists))
-sort(category_counts,decreasing=TRUE)[1:20]
+# store the most frequent categories
+top_cats <- sort(category_counts,decreasing=TRUE)[1:20]
 
-# assign one of the top categories to each row (otherwise "other" category):
-top_cats <- c(
-  "Card Game",
-  "Wargame",
-  "Fantasy",
-  "Party Game",
-  "Dice",
-  "Fighting",
-  "Abstract Strategy",
-  "Childrens Game",
-  "Science Fiction"
-)
 
-# assign category to each row
+# assign less common categories to the 'other' category
 assigned_category <- sapply(split_lists, function(x) { # go through each row’s list of categories one by one, call it x
   match_cat <- intersect(x, top_cats) # find which of the row’s categories are in your list of top categories.
   ifelse(length(match_cat) > 0, match_cat[1], "Other") # if it found any top categories, use the first one; if not, label it "Other".
@@ -143,4 +132,9 @@ games <- games %>% distinct()
 # defining target variable
 games$difficulty <- ifelse(games$avgweight > 2.5, "Complex", "Simple")
 games$difficulty <- as.factor(games$difficulty)
+
+ggplot(games) +
+  geom_point(aes(avgweight, boardgamehonor_cnt,colour = average))+ 
+  scale_colour_brewer("Average", palette = "BuPu")
+
 

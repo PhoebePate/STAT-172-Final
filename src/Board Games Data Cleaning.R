@@ -26,30 +26,30 @@ games <- read.csv("src/boardgames.csv", stringsAsFactors = TRUE)
 # remove unwanted columns
 games <- games %>% select(-c(1, 4, 10:13, 15, 17:18, 20:22, 25, 30, 32, 34, 37:45, 47:50, 52))
 
-"""Columns that are kept:
-2: name of the game
-3: year published
-5: min players
-6: max players
-7: min play time
-8: max play time
-9: minimum age
-14: language dependence
-16: average rating
-19: COMPLEXITY: Y variable
-23: number of wishlists
-24: number of comments on the site
-26: number of times game was played
-27: number of plays per month
-28: number of news articles on the game
-29: number of blogs about the game
-31: number of podcasts about the game
-33: number of game designers
-35: number of publishers
-36: number of awards recieved
-46: list of genre categories
-51: full description of game
-"""
+#Columns that are kept:
+# 2: name of the game
+# 3: year published
+# 5: min players
+# 6: max players
+# 7: min play time
+# 8: max play time
+# 9: minimum age
+# 14: language dependence
+# 16: average rating
+# 19: COMPLEXITY: Y variable
+# 23: number of wishlists
+# 24: number of comments on the site
+# 26: number of times game was played
+# 27: number of plays per month
+# 28: number of news articles on the game
+# 29: number of blogs about the game
+# 31: number of podcasts about the game
+# 33: number of game designers
+# 35: number of publishers
+# 36: number of awards recieved
+# 46: list of genre categories
+# 51: full description of game
+
 
 # -- description column --
 # turn description into word count

@@ -1,8 +1,13 @@
 # Board Games Decision Tree
 
-source("STAT-172-Final/Board Games Data Cleaning.R") # sourcing the dataframe from 
+library(rpart) # classification trees
+library(rpart.plot) # makes pretty trees
+library(tidyverse) 
+library(pROC)
 
-games_clean <- read.csv("class_data/cleanboardgames.csv")
+games_clean <- source("src/Board Games Data Cleaning.R") # sourcing the dataframe from 
+
+games_clean <- read.csv("src/cleanboardgames.csv")
 games_clean <- games_clean %>% select(-c(1,2,10,23))
 
 

@@ -15,7 +15,7 @@ library(lubridate)
 library(reshape2)
 library(stringr)
 
-games <- read.csv("boardgames1.csv", stringsAsFactors = TRUE)
+games <- read.csv("data/boardgames1.csv", stringsAsFactors = TRUE)
 games %>% str()
 
 # CLEANING STEPS
@@ -188,7 +188,7 @@ ggplot(games, aes(x = news, y = difficulty, color = difficulty)) +
 
 # -- Multivariate plots of x var and y var ---
 ggplot(data = games) + geom_histogram(aes(x= minplaytime, fill = difficulty), position = "fill")
-ggsave("output/plotname.pdf")
+ggsave("output/hist of minplaytime.pdf")
 
 ggplot(data = games) + 
   geom_bar(aes(x = numplays_month, fill = difficulty), position = "fill") + 

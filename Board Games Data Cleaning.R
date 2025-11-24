@@ -95,7 +95,6 @@ category_counts <- table(unlist(split_lists))
 # store the most frequent categories
 top_cats <- sort(category_counts,decreasing=TRUE)[1:20]
 
-
 # assign less common categories to the 'other' category
 assigned_category <- sapply(split_lists, function(x) { # go through each row’s list of categories one by one, call it x
   match_cat <- intersect(x, top_cats) # find which of the row’s categories are in your list of top categories.
@@ -136,5 +135,7 @@ games$difficulty <- as.factor(games$difficulty)
 ggplot(games) +
   geom_point(aes(avgweight, boardgamehonor_cnt,colour = average))+ 
   scale_colour_brewer("Average", palette = "BuPu")
+
+write.csv(games,"class_data/cleanboardgames.csv", row.names = FALSE)
 
 

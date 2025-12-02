@@ -1,0 +1,129 @@
+---
+title: "Board Games Presentation"
+author: "Kaitlyn Staut, Erika Roehrs, and Phoebe Pate"
+date: "2025-12-02"
+output: powerpoint_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r pressure}
+plot(pressure)
+```
+
+
+## CONTEXT
+START OF OUR PRESENTATION
+(keeping the previous slides for examples)
+
+Context or motivation: What business question, problem, or opportunity led to this project?
+
+Example: “Rising customer churn in the subscription service has created uncertainty in forecasting revenue.”
+
+Goal statement: “Our objective was to understand key drivers of churn and develop a predictive model to identify at-risk customers.”
+
+Tip: This is your time to convince people that they care about your presentation. Or lose them entirely
+
+
+
+## BUSINESS PROBLEM
+Define the problem in business terms, not statistical jargon. What decisions will
+this analysis inform? What are the key questions being addressed (2–4 bullets)? e.g., Is it possible to preemptively predict customer churn? Which customer-company characteristics predict churn? Which of these are actionable and how should we act? How can we allocate retention resources more efficiently?
+
+Tip: Clarify early how success is defined — e.g., “A good outcome is a model that identifies 80% of churners before they actually churn.” 
+
+
+
+## DATA OVERVIEW
+Source(s): Where did the data come from?
+
+Basic structure: Number of observations, relevant variables, and time period.
+Data quality / preprocessing steps (only the essentials: missing data handling, aggregation, etc.).
+
+Tip: Keep this concise; show a quick (but quality) visual or simple table to build trust in your data processing.
+
+
+
+## METHODS
+Explain how you approached the problem in plain language:
+
+“We compared several predictive methods including a random forest, and a logistic regression fit with MLE,lasso, and ridge penalization.”
+
+“We used hierarchical clustering to segment customers based on demographics.”
+Describe evaluation metrics: accuracy (unlikely, I would hope), sensitivity, AUC, etc.
+
+Emphasize why you chose the method — not just what you used.
+
+“We chose logistic regression because interpretability was a priority. We supplement our descriptive insights with a random forest because that had the best predictive power.” (recall, I’m asking you to give me both a predictive and a descriptive model. . . )
+
+Tip: Focus on intuition and relevance to the business goal. Don’t let the client forget why they (specifically) are listening to your presentation.
+
+
+
+## RESULTS
+Tell them: Start with high-level findings first (“What did we learn?“), then support with evidence.
+
+Use clear visuals: meaningful plots with x and y, variable importance (quality), predicted vs. true on test, etc. See Visualization section of rubric.
+
+Highlight 3–5 key insights. Example: “Discount is the strongest predictors of churn - but, based on the plot, only up to 20% discount matters.”
+
+Tell them again: Translate each insight to business meaning or actionable takeaway.
+
+“By targeting high-tenure customers with 15-20% discount code mailers, we could reduce odds of churn by 15%.” (sounds like an odds ratio to me)
+
+
+
+## RECOMMEND
+“We recommend. . . .”
+
+Include a visual roadmap or priority list if relevant.
+
+Tip: Always connect back to the original problem and goal — close the loop. This is NOT about you and it is NOT about your analysis - it is about your client.
+
+
+
+## LIMITATIONS
+Acknowledge limitations transparently - this is the difference between a good presentation and a great one:
+Data limitations (sample bias, missing features).
+Methodological limits (correlation isn’t the same causation).
+
+Poorer than expected model performance. For example, “Given 100 positive events, we only expect to correctly identify 64 of them before they occur based on our model.”
+
+Explain the heck out of your sensitivity and specificity - in % terms, in count terms, in practical terms, etc..
+
+Predictive Model - this section in the rubric doesn’t just concern your code, it also concerns how you talk about your model performance
+
+
+
+## CONCLUSION
+Summarize in one slide. Don’t ramble, though it can be tempting.
+
+Problem (1 sentence) then Method (1 sentence) then Key insight then Action.
+
+End with a takeaway statement. “Our model showed that we can use customer data to predict a future churn event; though, only up to a point. Still, we recommend blah blah blah.”
+
+
+
+## QUESTIONS?

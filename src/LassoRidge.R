@@ -19,8 +19,8 @@ games_cleaned <- read.csv("data/cleanboardgames.csv", stringsAsFactors = TRUE)
 
 # MODELING TIME
 games_cleaned %>% glimpse() %>% summary()
-
-
+games_cleaned <- games_cleaned %>% select(-c(1))
+games_cleaned %>% glimpse()
 # Goal: predict whether a board game (row in the data) is difficult based on rating of complexity (categorical response)
 # this will help us to find a simple model :)
 # for lasso and ridge we need binary RV
@@ -31,7 +31,7 @@ games_cleaned_lr <- games_cleaned
 
 # ---> split into test/train
 RNGkind(sample.kind = "default")
-set.seed(44446)
+set.seed(2291352)
 train.idx <- sample(x= 1:nrow(games_cleaned_lr), size = .7*nrow(games_cleaned_lr))
 train.df <- games_cleaned_lr[train.idx,]
 test.df <- games_cleaned_lr[-train.idx,]
@@ -41,7 +41,7 @@ lr_mle <- glm(difficulty ~ .,
               data = train.df,
               family = binomial(link = "logit"))
 lr_mle_coefs <- coef(lr_mle)
-
+# warning is complete separation 
 
 # Lasso & Ridge time!
 
@@ -107,13 +107,13 @@ plot(test.df.preds$mle_pred, test.df.preds$lasso_pred)
 # there are considerable differences between lasso predictions & MLE predictions
 
 # make ROC curves for each of the three models
-mle_rocCurve <- roc(response = as.factor(test.df.preds$popular_bin),
+mle_rocCurve <- roc(response = as.factor(test.df.preds$difficulty),
                     predictor = test.df.preds$mle_pred,
                     levels = c("0", "1"))
-ridge_rocCurve <- roc(response = as.factor(test.df.preds$popular_bin),
+ridge_rocCurve <- roc(response = as.factor(test.df.preds$difficulty),
                       predictor = test.df.preds$ridge_pred,
                       levels = c("0", "1"))
-lasso_rocCurve <- roc(response = as.factor(test.df.preds$popular_bin),
+lasso_rocCurve <- roc(response = as.factor(test.df.preds$difficulty),
                       predictor = test.df.preds$lasso_pred,
                       levels = c("0", "1"))
 
@@ -155,6 +155,8 @@ ggplot() +
 
 
 
+ggplot(games_cleaned, aes(x = difficulty, y = avgweight)) +
+  geom_boxplot()
 
 
 

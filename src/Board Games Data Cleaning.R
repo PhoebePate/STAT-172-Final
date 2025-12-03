@@ -90,10 +90,11 @@ games$dif_players <- (games$maxplayers - games$minplayers)
 # find count of how many times each unique category appears
 cleaned_lists <- str_replace_all(games$boardgamecategory, "\\[|\\]|'", "")
 split_lists <- str_split(cleaned_lists, ",\\s*")
-unique_items <- unique(unlist(split_lists))
-category_counts <- table(unlist(split_lists))
+split_lists <- lapply(split_lists, str_trim)
+all_cats <- unlist(split_lists)
+category_counts <- table(all_cats)
 # store the most frequent categories
-top_cats <- sort(category_counts,decreasing=TRUE)[1:20]
+top_cats <- names(sort(category_counts, decreasing = TRUE)[1:20])
 
 # assign less common categories to the 'other' category
 assigned_category <- sapply(split_lists, function(x) { # go through each row’s list of categories one by one, call it x

@@ -1,5 +1,7 @@
 # MODELING
 
+rm(list = ls())
+
 library(ggplot2)
 library(tidyverse)
 library(rpart)
@@ -13,8 +15,9 @@ library(lubridate)
 library(reshape2)
 library(stringr)
 
+games <- read.csv("data/cleanboardgames.csv", stringsAsFactors = TRUE)
 
-# CLUSTERING ------
+# K-MEANS CLUSTERING ------
 # remove things like name, year, difficulty, etc...
 games_X <- games %>% select(-c(1, 2, 10, 23, 24))
 summary(games_X)
@@ -82,10 +85,11 @@ games %>%
 # calculate average numplays per years since released (streams)/(2024 - released_year)
 games %>% 
   ggplot() +
-  geom_boxplot(aes(x = km_clusters, y = numplays/(2024- yearpublished)), fill = "#1ED760", colour = "#1DB954") +
+  geom_boxplot(aes(x = km_clusters, y = (numplays)/(2024 - yearpublished)), fill = "red", colour = "blue") +
   labs(x = "Cluster", y = "Avg. Number of Plays per Year") +
   scale_y_continuous(labels = comma) +
   theme_bw()
+
 
 # rename the clusters with meaningful names
 games <- games %>% 
@@ -95,7 +99,7 @@ games <- games %>%
                                            )))
 games %>% 
   ggplot() +
-  geom_boxplot(aes(x = km_clusters_f, y = numplays/(2024- yearpublished)), fill = "lightblue")+
+  geom_boxplot(aes(x = km_clusters_f, y = avgweight), fill = "lightblue")+
   labs(x = "Cluster", y = "Avg. Number of Plays per Year") +
   scale_y_continuous(labels = comma) +
   theme_bw() +
@@ -104,4 +108,11 @@ games %>%
 # what we've essentially done is reduced the 19 numeric variables
 # into a single, simple, factor with 4 levels
 # --> this is another way to create a simple/parsimonious regression model
-games_kmc <- lm(numplays/(2024 - yearpublished) ~ km_clusters_f, data = games)
+games_kmc <- lm(avgweight/(2024 - yearpublished) ~ km_clusters_f, data = games)
+
+# rename clusters in the table
+games$km_clusters <- factor(games$km_clusters,
+                     levels = c(1, 2, 3, 4),          # the original numeric values
+                     labels = c("Casual Family Games", "Kid Friendly Games", 
+                                "Hobby Games", "Popular Strategy Games"))
+

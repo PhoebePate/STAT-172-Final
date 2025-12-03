@@ -133,4 +133,7 @@ games <- games %>% distinct()
 games$difficulty <- ifelse(games$avgweight > 2.5, "Complex", "Simple")
 games$difficulty <- as.factor(games$difficulty)
 
+games %>% glimpse()
+games <- games %>% select(-c(10))
+games %>% glimpse()
 write.csv(games,"data/cleanboardgames.csv", row.names = FALSE)

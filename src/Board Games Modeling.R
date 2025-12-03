@@ -18,8 +18,8 @@ library(stringr)
 games <- read.csv("data/cleanboardgames.csv", stringsAsFactors = TRUE)
 
 # K-MEANS CLUSTERING ------
-# remove things like name, year, difficulty, etc...
-games_X <- games %>% select(-c(1, 2, 10, 23, 24))
+# remove columns name, year, category, and difficulty
+games_X <- games %>% select(-c(1, 2, 22, 23))
 summary(games_X)
 
 # standardize the numeric features
@@ -99,7 +99,7 @@ games <- games %>%
                                            )))
 games %>% 
   ggplot() +
-  geom_boxplot(aes(x = km_clusters_f, y = avgweight), fill = "lightblue")+
+  geom_boxplot(aes(x = km_clusters_f, y = numplays/(2024 - yearpublished)), fill = "lightblue")+
   labs(x = "Cluster", y = "Avg. Number of Plays per Year") +
   scale_y_continuous(labels = comma) +
   theme_bw() +
@@ -108,11 +108,5 @@ games %>%
 # what we've essentially done is reduced the 19 numeric variables
 # into a single, simple, factor with 4 levels
 # --> this is another way to create a simple/parsimonious regression model
-games_kmc <- lm(avgweight/(2024 - yearpublished) ~ km_clusters_f, data = games)
-
-# rename clusters in the table
-games$km_clusters <- factor(games$km_clusters,
-                     levels = c(1, 2, 3, 4),          # the original numeric values
-                     labels = c("Casual Family Games", "Kid Friendly Games", 
-                                "Hobby Games", "Popular Strategy Games"))
+games_kmc <- lm(numplays/(2024 - yearpublished) ~ km_clusters_f, data = games)
 

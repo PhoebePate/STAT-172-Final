@@ -146,6 +146,4 @@ ggplot(games_cleaned, aes(desc_word_count, numwanting, colour = difficulty)) +
 ggsave("output/ Word Count Difficulty.pdf")
 # most descriptions are short, you can start to see how the complex games have a higher word count, there's no strong correlation
 # complexity does not strongly affect description length or number of people wanting it looks like 
-
 # end of exploratory analysis. 
-

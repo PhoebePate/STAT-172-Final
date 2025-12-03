@@ -154,9 +154,3 @@ ggplot() +
   theme_minimal()
 
 
-
-ggplot(games_cleaned, aes(x = difficulty, y = avgweight)) +
-  geom_boxplot()
-
-
-

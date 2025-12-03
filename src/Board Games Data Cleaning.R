@@ -17,7 +17,7 @@ library(reshape2)
 library(stringr)
 
 # import data
-games <- read.csv("src/boardgames.csv", stringsAsFactors = TRUE)
+games <- read.csv("data/boardgames.csv", stringsAsFactors = TRUE)
 # our client is the Rook Room, a new small business in Des Moines who needs help in categorizing their board game collection. 
 # Their collection of games requires a difficulty indicator (whether it is a complex game or not) based on a number of factors. 
 
@@ -123,7 +123,7 @@ colSums(is.na(games))
 str(games)
 games <- games %>% filter(maxplayers >= minplayers)
 games <- games %>% filter(maxplaytime >= minplaytime)
-games <- games %>% filter(yearpublished >= 1900 & yearpublished <= year(Sys.Date()))
+games <- games %>% filter(yearpublished >= 1850 & yearpublished <= year(Sys.Date()))
 
 # remove duplicates
 games <- games %>% distinct()
@@ -132,10 +132,4 @@ games <- games %>% distinct()
 games$difficulty <- ifelse(games$avgweight > 2.5, "Complex", "Simple")
 games$difficulty <- as.factor(games$difficulty)
 
-ggplot(games) +
-  geom_point(aes(avgweight, boardgamehonor_cnt,colour = average))+ 
-  scale_colour_brewer("Average", palette = "BuPu")
-
-write.csv(games,"class_data/cleanboardgames.csv", row.names = FALSE)
-
-
+write.csv(games,"data/cleanboardgames.csv", row.names = FALSE)

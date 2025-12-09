@@ -21,11 +21,9 @@ To install the required R packages, run the following code in R:
 
 install.packages(c("ggplot2", "tidyverse", "rpart", "rpart.plot", "pROC",
                    "tidymodels", "randomForest", "RColorBrewer", "glmnet", "lubridate", "reshape2", "stringr"))
-
 ```
 
 ## Data
-
 We used one final, cleaned source of data containing historical data from boardgamegeek.com. This data can be found in the following sub-directories:
 
 ```{r }
@@ -35,8 +33,6 @@ list.files("Stat-172-Final/data/cleanboardgames.csv")
 
 The data file that will be called is "cleanboardgames.csv".
 
-One for cleaning, one for descriptive, one for predictive, etc... your README
-should walk a reader through your process.)
 
 ## Reproduce
 1. Run `Board Games Data Cleaning.R` to reproduce data cleaning steps taken. 
@@ -48,7 +44,7 @@ These steps included: column reduction, text cleaning & restructuring, fixing in
 Link below can be used to view the plots found in the manuscript:
 https://github.com/PhoebePate/STAT-172-Final/tree/1a74b6306b3e10820018d29556e3ed9b68d2fc39/output
   
-2. Run `Board Games Data Exploratory Analysis.R` to reproduce histograms, boxplots, and scatterplots of single variables and our target. 
+2. Run `Board Games Data Exploratory Analysis.R` to reproduce histograms, boxplots, and scatterplots of explanatory variables and our target. 
   *  Stat-172-Final/output/News Difficulty.pdf
   *  Stat-172-Final/output/Num Plays Difficulty.pdf
   *  Stat-172-Final/output/Num Plays per Month Difficulty.pdf
@@ -63,19 +59,15 @@ https://github.com/PhoebePate/STAT-172-Final/tree/1a74b6306b3e10820018d29556e3ed
   *  Stat-172-Final/output/Num Wanting Difficulty Hist.pdf
   *  Stat-172-Final/output/Numeric Variable Distributions.pdf
   *  Stat-172-Final/output/Year Published Difficulty.pdf
-3. Run `Board Games Data Forest.R` to reproduce error rate plots and coefficient plots for the Indonesia data. 
-  *  Indonesia Analysis/coef_score_EC_hillebrecht.pdf (Figure 5)
-  *  Indonesia Analysis/coef_score_hillebrecht.pdf (Figure 2)
-  *  Indonesia Analysis/ER_hybrid_AI.pdf (Figure 7 b)
-  *  Indonesia Analysis/ER_hybrid_EC.pdf (Figure 6)
-  *  Indonesia Analysis/ER_hybrid.pdf (Figure 3 b)
-4. Run `Burkina Faso Analysis/run_mcmc_weights.R` to reproduce heterogeneous ranker results. 
-  *  Burkina Faso Analysis/heter_weights_omega.pdf (Figure 4 a)
-  *  Burkina Faso Analysis/heter_weights_corr.pdf (Figure 4 b)
 
+3. Run `Board Games Data Forest.R` to reproduce predictive model results (Random Forest). 
+  *  Stat-172-Final/src/"Board Games Data Forest.R"
 
-## References
+4. Run `Board Games Data Forest.R` to reproduce descriptive model (logistic regression). 
+  *  Stat-172-Final/src/"Board Games Data Forest.R"
 
-Alatas,   V.,   Banerjee,   A.,   Hanna,   R.,   Olken,   B.,   and  Tobias,   J.  (2013).Targeting  the  poor:   Evidence  from  a  field  experiment  in  Indonesia.Harvard  Dataverse,https://doi.org/10.7910/DVN/M7SKQZ, V5.
-
-Hillebrecht,  M.,  Klonner,  S.,  Pacere,  N.  A.,  and  Souares,  A.  (2020b).   Community-basedversus statistical targeting of anti-poverty programs: Evidence from Burkina Faso.Journalof African Economies, 29(3):271–305
+5. Run `LassoRidge.R` to reproduce penalized regression results (lasso & ridge). 
+  *  Stat-172-Final/src/"LassoRidge.R"
+  
+6. Run `Board Games Clustering.R` to reproduce unsupervised learning clustering results. 
+  *  Stat-172-Final/src/"Board Games Clustering.R"

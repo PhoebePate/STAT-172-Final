@@ -153,4 +153,10 @@ ggplot() +
   labs(x = "1 - Specificity", y = "Sensitivity", color = "Model") +
   theme_minimal()
 ggsave("output/ROC of Lasso, Ridge, MLE.pdf")
+# our best models are Lasso & MLE w/AUC = .901
 
+# make new column
+lasso_pi_hat <- predict(final_lasso, x.test, type = "response")[, 1]
+lasso_pi_star <- coords(lasso_rocCurve, "best", ret = "threshold")$threshold[1]
+test.df$result_pred <- as.factor(ifelse(lasso_pi_hat > lasso_pi_star, "Yes", "No"))
+view(test.df)

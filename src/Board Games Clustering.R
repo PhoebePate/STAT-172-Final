@@ -97,13 +97,21 @@ games <- games %>%
                                 labels = c("Casual Family Games", "Kid Friendly Games",
                                            "Hobby Games", "Popular Strategy Games"
                                            )))
+
+# boxplot to show complexity within each cluster
 games %>% 
-  ggplot() +
-  geom_boxplot(aes(x = km_clusters_f, y = numplays/(2024 - yearpublished)), fill = "lightblue")+
-  labs(x = "Cluster", y = "Avg. Number of Plays per Year") +
-  scale_y_continuous(labels = comma) +
+  ggplot(aes(x = km_clusters_f, fill = difficulty)) +
+  geom_bar(position = "fill") +   
+  labs(
+    x = "Cluster", 
+    y = "Proportion", 
+    fill = "Complexity") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_brewer(palette = "Set2") +
   theme_bw() +
   coord_flip()
+
+ggsave("output/ComplexitybyCluster.pdf")
 
 # what we've essentially done is reduced the 19 numeric variables
 # into a single, simple, factor with 4 levels

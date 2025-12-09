@@ -71,3 +71,4 @@ https://github.com/PhoebePate/STAT-172-Final/tree/1a74b6306b3e10820018d29556e3ed
   
 6. Run `Board Games Clustering.R` to reproduce unsupervised learning clustering results. 
   *  Stat-172-Final/src/"Board Games Clustering.R"
+  *  Stat-172-Final/output/ComplexitybyCluster.pdf

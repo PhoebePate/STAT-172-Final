@@ -16,6 +16,7 @@ library(reshape2)
 library(stringr)
 
 games_cleaned <- read.csv("data/cleanboardgames.csv", stringsAsFactors = TRUE)
+games_cleaned <- games_cleaned %>% select(-c(1))
 
 # MODELING TIME
 games_cleaned %>% glimpse() %>% summary()
@@ -153,7 +154,7 @@ ggplot() +
   labs(x = "1 - Specificity", y = "Sensitivity", color = "Model") +
   theme_minimal()
 ggsave("output/ROC of Lasso, Ridge, MLE.pdf")
-# our best models are Lasso & MLE w/AUC = .901
+# our best models are Lasso & MLE w/AUC = .9
 
 # make new column
 lasso_pi_hat <- predict(final_lasso, x.test, type = "response")[, 1]

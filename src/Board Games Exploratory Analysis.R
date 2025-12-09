@@ -147,3 +147,17 @@ ggsave("output/ Word Count Difficulty.pdf")
 # most descriptions are short, you can start to see how the complex games have a higher word count, there's no strong correlation
 # complexity does not strongly affect description length or number of people wanting it looks like 
 # end of exploratory analysis. 
+
+# plots we wanted to include for our presentation
+ggplot(games_cleaned, aes(difficulty, maxplaytime, fill = difficulty)) + 
+  geom_boxplot(alpha = 0.8) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title = "Max Playtime by Difficulty", fill = "Difficulty")
+ggsave("output/Max Playtime by Difficulty.pdf")
+
+
+ggplot(games_cleaned, aes(difficulty, maxplaytime, fill = difficulty)) + 
+  geom_boxplot(alpha = 0.8) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(title = "Max Playtime by Difficulty", fill = "Difficulty")
+ggsave("output/Max Playtime by Difficulty.pdf")

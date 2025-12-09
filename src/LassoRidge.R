@@ -149,8 +149,8 @@ ggplot() +
   geom_text(data = roc_data %>% group_by(Model) %>% slice(1), 
             aes(x = 0.75, y = c(0.75, 0.65, 0.55), colour = Model,
                 label = paste0(Model, " AUC = ", round(AUC, 3)))) +
-  scale_colour_brewer(palette = "Paired") +
+  scale_colour_brewer(palette = "Set2") +
   labs(x = "1 - Specificity", y = "Sensitivity", color = "Model") +
   theme_minimal()
-
+ggsave("output/ROC of Lasso, Ridge, MLE.pdf")
 

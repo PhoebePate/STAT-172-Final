@@ -105,6 +105,9 @@ rocCurve <- roc(response = test.df$difficulty,
 plot(rocCurve, print.thres = TRUE, print.auc = TRUE)
 ggsave("output/FinalForestROCcurve.pdf")
 
+# AUC = 0.926
+# Specificity = 0.850
+# Sensitivity = 0.854
 
 # Make a column of predicted values in our test data
 pi_star <- coords(rocCurve, "best", ret = "threshold")$threshold[1]
@@ -113,7 +116,6 @@ test.df$forest_pred <- ifelse(pi_hat > pi_star, "Complex", "Simple") %>% as.fact
 
 varImpPlot(final_forest, type = 1)
 ggsave("output/ForestVariableImportancePlot.pdf")
-
 
 # LOGISTIC REGRESSION
 

@@ -149,8 +149,14 @@ ggplot() +
   geom_text(data = roc_data %>% group_by(Model) %>% slice(1), 
             aes(x = 0.75, y = c(0.75, 0.65, 0.55), colour = Model,
                 label = paste0(Model, " AUC = ", round(AUC, 3)))) +
-  scale_colour_brewer(palette = "Paired") +
+  scale_colour_brewer(palette = "Set2") +
   labs(x = "1 - Specificity", y = "Sensitivity", color = "Model") +
   theme_minimal()
+ggsave("output/ROC of Lasso, Ridge, MLE.pdf")
+# our best models are Lasso & MLE w/AUC = .901
 
-
+# make new column
+lasso_pi_hat <- predict(final_lasso, x.test, type = "response")[, 1]
+lasso_pi_star <- coords(lasso_rocCurve, "best", ret = "threshold")$threshold[1]
+test.df$result_pred <- as.factor(ifelse(lasso_pi_hat > lasso_pi_star, "Yes", "No"))
+view(test.df)

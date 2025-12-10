@@ -156,8 +156,9 @@ ggplot(games_cleaned, aes(difficulty, maxplaytime, fill = difficulty)) +
 ggsave("output/Max Playtime by Difficulty.pdf")
 
 
-ggplot(games_cleaned, aes(difficulty, maxplaytime, fill = difficulty)) + 
+ggplot(games_cleaned, aes(difficulty, average, fill = difficulty)) + 
   geom_boxplot(alpha = 0.8) +
   scale_fill_brewer(palette = "Set2") +
-  labs(title = "Max Playtime by Difficulty", fill = "Difficulty")
-ggsave("output/Max Playtime by Difficulty.pdf")
+  labs(title = "Average Rating by Difficulty", fill = "Difficulty")
+ggsave("output/Average Rating by Difficulty.pdf")
+
